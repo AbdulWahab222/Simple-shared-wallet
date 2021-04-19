@@ -6,7 +6,7 @@ contract SimpleSharedWallet {
     address public owner;
     address ContractAddress = address(this);
     
-    constructor() {
+    constructor() public {
         owner = msg.sender;
     }
     
@@ -43,5 +43,5 @@ contract SimpleSharedWallet {
         require(msg.sender == owner);
         _to.transfer(_amount);
         balances[ContractAddress] -= msg.value;
-     
+    } 
 }
