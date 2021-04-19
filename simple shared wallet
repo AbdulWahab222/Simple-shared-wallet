@@ -1,5 +1,5 @@
 
-pragma solidity 0.8.0;
+pragma solidity >=0.5.0 <0.8.4;
 
 contract SimpleSharedWallet {
     
@@ -39,9 +39,9 @@ contract SimpleSharedWallet {
         
     }
     
-    function withDraw(address payable _to, uint _amount) public {
+    function withDraw(address payable _to, uint _amount) public payable {
         require(msg.sender == owner);
         _to.transfer(_amount);
-    
-    
+        balances[ContractAddress] -= msg.value;
+     
 }
