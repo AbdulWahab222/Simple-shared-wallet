@@ -16,14 +16,14 @@ contract SimpleSharedWallet {
     
     
     function sendMoney() public payable {
-        balances[ContractAddress] = msg.value;
+        balances[ContractAddress] += msg.value;
     }
     
     function ContBalance() public view returns(uint) {
         return address(this).balance;
     }
     
-    function setAllowance(address _addr, uint _amount, bool) public {
+    function setAllowance(address _addr, uint _amount) public {
         require(msg.sender == owner, "You are not allowed");
         eligible[_addr] = true;
         allowance[ContractAddress][_addr] = _amount;
@@ -42,6 +42,6 @@ contract SimpleSharedWallet {
     function withDraw(address payable _to, uint _amount) public payable {
         require(msg.sender == owner);
         _to.transfer(_amount);
-        balances[ContractAddress] -= msg.value;
-    } 
+        balances[ContractAddress] -= _amount;
+    }
 }
