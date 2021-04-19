@@ -1,0 +1,54 @@
+//SPDX-License-Identifier: MIT
+
+pragma solidity 0.8.0;
+
+contract SharedWallet {
+    
+    address public owner;
+    uint256 public ContractBalance = address(this).balance;
+    address public ContractAddress = address(this);
+    
+    constructor() {
+        owner = msg.sender;
+    }
+    
+    mapping(address => uint) public balances;
+    mapping(address => mapping(address=> uint)) public allowance;
+    address[] public allowedAddresses;
+    
+    modifier onlyOwner() {
+        require(msg.sender == owner);
+        _;
+    }
+    
+    
+    function withDrawMoney(address payable _to, uint _amount) public onlyOwner {
+        _to.transfer(_amount);
+        balances[ContractAddress] -= _amount;
+    }
+    
+    receive() external payable {
+        
+    }
+    
+    function sendMoney() public payable {
+        balances[ContractAddress] += msg.value;
+        
+    }
+    
+    function setAllowance(address _spender, uint _amount) public onlyOwner{
+        allowedAddresses.push(_spender);
+        allowance[ContractAddress][_spender] = _amount;
+    }
+    
+    function transferFrom(address payable _ContractAddress, address payable _spender, uint _amount) public {
+        allowance[_ContractAddress][_spender] -= _amount;
+        balances[_ContractAddress] -= _amount;
+        balances[_spender] += _amount;
+        _spender.transfer(_amount);
+    }
+    
+    function transfer(address payable _to, uint _amount) public {
+        _to.transfer(_amount);
+    }
+}
