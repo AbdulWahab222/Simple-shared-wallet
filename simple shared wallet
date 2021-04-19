@@ -5,7 +5,7 @@ pragma solidity 0.8.0;
 contract SimpleSharedWallet {
     
     address public owner;
-    address public ContractAddress = address(this);
+    address ContractAddress = address(this);
     
     constructor() {
         owner = msg.sender;
@@ -13,7 +13,7 @@ contract SimpleSharedWallet {
     
     mapping(address => uint) public balances;
     mapping(address => mapping(address => uint)) public allowance;
-    mapping(address => bool) public eligible;
+    mapping(address => bool) eligible;
     
     
     function sendMoney() public payable {
