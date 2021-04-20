@@ -3,4 +3,4 @@ With the help of this Simple shared wallet contract you can store Ethers which c
 
 The contract owner can assign a specific amount of Ether for every account and all those authorized accounts will use their allocated funds as and when they need it.
 
-Time Lock functionality logic can also be added in this smart contract shared wallet.
+Time Lock functionality logic can also be added in this smart wallet.
