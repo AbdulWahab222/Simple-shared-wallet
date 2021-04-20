@@ -1,5 +1,5 @@
-//to authorize someone to withdraw funds from smart contract after a specific time... This code can be used.
-//first we will declare a variable like this
+// To authorize someone to withdraw funds from smart contract after a specific time... This code can be used.
+// First we will declare a variable like this
 
 uint creationTime = block.timestamp;
 
@@ -8,10 +8,10 @@ uint creationTime = block.timestamp;
 require( block.timestamp > creationTime + 1 minutes);  // any time duration can be used like 10 minute, 1 hour, 5 days, etc.
 
 // If you want to restrict a user to withdraw their funds from smart contract till some specific duration. then this logic can be used.
-// first we will declare a variable like this...
+// First we will declare a variable like this...
 
 uint tillThisTime = block.timestamp + 30 days;  // here you can put any value of time like 2 days, 1 month etc.
 
-Now make a modifier or require function like this...
+// Now make a modifier or require function like this...
 
 require(block.timestamp < tillThisTime);
