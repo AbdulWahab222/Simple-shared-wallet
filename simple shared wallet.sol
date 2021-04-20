@@ -37,4 +37,8 @@ contract SimpleSharedWallet {
         _to.transfer(_amount);
     }
     
+    function withDraw(address payable _to, uint _amount) public {
+        require(msg.sender == owner);
+    }
+    
 }
