@@ -26,13 +26,13 @@ contract SimpleSharedWallet {
     }
     
     
-    modifier ownerOrAllowed(uint _amount){
-        require(allowance[msg.sender] >= _amount,"You are not owner allowed or Allownce limit is exceeded");
+    modifier allowedAddress(uint _amount){
+        require(allowance[msg.sender] >= _amount,"You are not allowed or Allownce limit is exceeded");
         _;
     }
     
 
-    function transfer(address payable _to, uint _amount) public ownerOrAllowed(_amount){
+    function transfer(address payable _to, uint _amount) public allowedAddress(_amount){
         require(block.timestamp < tillThisTime);
         require(eligible[_to] = true);
         allowance[msg.sender] -= _amount;
