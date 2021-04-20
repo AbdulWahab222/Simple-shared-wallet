@@ -1,4 +1,4 @@
-// To authorize someone to withdraw funds from smart contract after a specific time... This code can be used.
+// To authorize someone to withdraw funds from smart contract after a specific time... This logic can be used.
 // First we will declare a variable like this
 
 uint creationTime = block.timestamp;
